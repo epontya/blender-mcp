@@ -43,8 +43,8 @@ class BlenderMCPServer:
         self.running = False
         self.socket = None
         self.server_thread = None
-        # Increase backlog from 1 to 5 to allow multiple pending connections
-        self._listen_backlog = 5
+        # Increased backlog from 1 to 10 for better handling of burst connections
+        self._listen_backlog = 10
 
     def start(self):
         if self.running:
@@ -102,7 +102,4 @@ class BlenderMCPServer:
                 # Accept new connection
                 try:
                     client, address = self.socket.accept()
-                    print(f"Connected to client: {address}")
-
-                    # Handle client in a separate thread
-                    client_thread = thr
+                    print(f"C
